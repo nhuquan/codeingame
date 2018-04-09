@@ -59,7 +59,28 @@ class Tree {
       return null;
   }
 
+  Node findIterative(int n) {
+    return findIterative(root, n);
+  }
 
+  Node findIterative(Node node, int n) {
+      Node x = node;
+      while (x != null) {
+        if (x.value == n)
+          return x;
+        if (x.value < n ) {
+          if (x.right != null)
+            x = x.right;
+          else return null;
+        }
+        if (x.value > n) {
+          if (x.left != null)
+            x = x.left;
+          else return null;
+        }
+      }
+      return null;
+  }
   public static void main(String[] args) {
       Tree t = new Tree();
 
@@ -71,8 +92,8 @@ class Tree {
       t.insert(80);
       t.printInorder();
 
-      int n = 80;
-      Node result = t.find(n);
+      int n = 90;
+      Node result = t.findIterative(n);
       if (result == null)
         System.out.println("not found");
       else  System.out.println("found node "  + result.value);
